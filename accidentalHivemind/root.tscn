@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://r4ihn42kvufh"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_iobed"]
+[ext_resource type="Texture2D" uid="uid://bs5ckwhncui0b" path="res://icon.svg" id="2_gkmhe"]
+[ext_resource type="PackedScene" uid="uid://cc3rvyt0i22a8" path="res://enemy.tscn" id="3_8lrve"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vd5u1"]
+
+[node name="root" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="."]
+collision_mask = 0
+script = ExtResource("1_iobed")
+
+[node name="Icon" type="Sprite2D" parent="player"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_gkmhe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("CircleShape2D_vd5u1")
+
+[node name="Enemy" parent="." instance=ExtResource("3_8lrve")]
+position = Vector2(83, -33)
+active_sight = 45
+idle_sight = 20
+
+[node name="Label" type="Label" parent="Enemy"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+text = "active_sight: 45
+idle_sight: 20"
+
+[node name="Enemy2" parent="." instance=ExtResource("3_8lrve")]
+position = Vector2(35, 83)
+
+[node name="Label2" type="Label" parent="Enemy2"]
+offset_right = 44.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+text = "active_sight: 90
+idle_sight: 40"
+
+[node name="Enemy3" parent="." instance=ExtResource("3_8lrve")]
+position = Vector2(-174, 86)
+active_sight = 150
+idle_sight = 75
+
+[node name="Label3" type="Label" parent="Enemy3"]
+offset_right = 44.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+text = "active_sight: 150
+idle_sight: 75"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

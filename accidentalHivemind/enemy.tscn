@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc3rvyt0i22a8"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_dgawm"]
+[ext_resource type="Texture2D" uid="uid://bs5ckwhncui0b" path="res://icon.svg" id="1_n0gwq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lj61d"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc3qm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_msost"]
+radius = 49.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_dgawm")
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_lj61d")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_n0gwq")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rc3qm")
+
+[node name="sight_area" type="Area2D" parent="."]
+
+[node name="sight_hitbox" type="CollisionShape2D" parent="sight_area"]
+shape = SubResource("CircleShape2D_msost")
+
+[connection signal="body_entered" from="sight_area" to="." method="_on_sight_area_body_entered"]
+[connection signal="body_exited" from="sight_area" to="." method="_on_sight_area_body_exited"]
